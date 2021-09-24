@@ -51,7 +51,7 @@ app.get('/notfound', (req, res) => {
 })
 
 app.post('/checkout', function (req, res) {
-	await checkout(req.body, opts)
+	checkout(req.body, opts)
 });
 
 app.listen(PORT);
