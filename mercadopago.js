@@ -34,5 +34,13 @@ export const keys = {
   access_token: ACCESS_TOKEN,
   integrator_id: INTEGRATOR_ID
 }
-export const opts = { items, back_urls, auto_return, payer, payment_methods, notification_url, external_reference };
+export const opts = {
+  payer,
+  items,
+  back_urls,
+  auto_return,
+  payment_methods,
+  notification_url,
+  external_reference
+};
 export default mercadopago
