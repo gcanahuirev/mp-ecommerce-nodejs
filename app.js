@@ -14,11 +14,11 @@ app.use(express.static('assets'));
 app.use('/assets', express.static(`${process.cwd()}/assets`));
 
 app.get('/', (req, res) => {
-	res.render('home');
+	return res.render('home');
 });
 
 app.get('/detail', (req, res) => {
-	res.render('detail', req.query);
+	return res.render('detail', req.query);
 	// checkout(req.query, opts)
 });
 
@@ -35,7 +35,7 @@ app.post('/notifications', (req, res) => {
 app.post('/webhooks', (req, res) => {
 	const { body } = req
 	console.log('webhook', body)
-	res.send(body)
+	return res.send(body)
 })
 
 app.get('/callback', (req, res) => {
@@ -43,15 +43,21 @@ app.get('/callback', (req, res) => {
 	if (status.includes('success')) { return res.render('success', data) }
 	if (status.includes('pending')) { return res.render('pending', data) }
 	if (status.includes('failure')) { return res.render('failure', data) }
-	res.redirect('/notfound')
+	return res.redirect('/notfound')
 })
 
 app.get('/notfound', (req, res) => {
 	return res.send('Not found')
 })
 
-app.post('/checkout', function (req, res) {
-	checkout(req.body, opts)
+app.post('/checkout', async (req, res) => {
+	try {
+		const { body: { init_point } } = await checkout(req.body, opts)
+		return res.render('confirm', { init_point })
+	} catch (err) {
+		console.log(err);
+		return res.send('Algo salio mal');
+	}
 });
 
 app.listen(PORT);

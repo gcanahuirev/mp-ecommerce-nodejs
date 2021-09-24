@@ -14,13 +14,9 @@ const checkout = async (query, opts) => {
   try {
     mercadopago.configure(keys)
     const data = await mercadopago.preferences.create(opts)
-    const { body: { init_point } } = data
-    console.log(data)
-    console.log(data.body)
-    res.render('confirm', { init_point })
+    return data
   } catch (err) {
-    console.log(err);
-    res.send('Algo salio mal');
+    return err
   }
 }
 
