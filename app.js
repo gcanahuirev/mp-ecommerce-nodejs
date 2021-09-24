@@ -22,7 +22,7 @@ app.get('/detail', (req, res) => {
 	await checkout(req.query, opts)
 });
 
-app.get('/notifications', (req, res) => {
+app.post('/notifications', (req, res) => {
 	const { type } = req
 	if (type === 'payment') { return res.send("Payment created") }
 	if (type === 'plan') { return res.send("Plan created") }
