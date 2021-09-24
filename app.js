@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
 
 app.get('/detail', (req, res) => {
 	res.render('detail', req.query);
-	await checkout(req.query, opts)
+	checkout(req.query, opts)
 });
 
 app.post('/notifications', (req, res) => {
