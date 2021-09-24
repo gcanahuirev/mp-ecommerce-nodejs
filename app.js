@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
 
 app.get('/detail', (req, res) => {
 	res.render('detail', req.query);
-	checkout(req.query, opts)
+	// checkout(req.query, opts)
 });
 
 app.post('/notifications', (req, res) => {
@@ -50,9 +50,9 @@ app.get('/notfound', (req, res) => {
 	return res.send('Not found')
 })
 
-/* app.post('/checkout', function (req, res) {
+app.post('/checkout', function (req, res) {
 	await checkout(req.body, opts)
-}); */
+});
 
 app.listen(PORT);
 console.log(`Server running -> PORT: ${PORT}`);
