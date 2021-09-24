@@ -23,12 +23,12 @@ app.get('/detail', (req, res) => {
 });
 
 app.post('/notifications', (req, res) => {
-	const { type } = req
-	if (type === 'payment') { return res.send("Payment created") }
-	if (type === 'plan') { return res.send("Plan created") }
-	if (type === 'subscription') { return res.send("Subscription created") }
-	if (type === 'invoice') { return res.send("Invoice created") }
-	if (type === 'test') { return res.send("Demo") }
+	const { query: { topic } } = req
+	if (topic === 'payment') { return res.send("Payment created") }
+	if (topic === 'plan') { return res.send("Plan created") }
+	if (topic === 'subscription') { return res.send("Subscription created") }
+	if (topic === 'invoice') { return res.send("Invoice created") }
+	if (topic === 'test') { return res.send("Demo") }
 	return res.status(404).send('Not found')
 })
 
