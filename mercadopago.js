@@ -2,9 +2,9 @@ import mercadopago from 'mercadopago';
 import { ACCESS_TOKEN, BUYER_AREA_CODE, BUYER_EMAIL, BUYER_LASTNAME, BUYER_NAME, BUYER_PHONE, BUYER_STREET_NAME, BUYER_STREET_NUMBER, BUYER_ZIP_CODE, EXTERNAL_REFERENCE, INTEGRATOR_ID, WEBSITE } from './config.js';
 
 let back_urls = {
-  success: `${WEBSITE}success`,
-  failure: `${WEBSITE}failure`,
-  pending: `${WEBSITE}pending`
+  success: `${WEBSITE}callback?status=success`,
+  failure: `${WEBSITE}callback?status=failure`,
+  pending: `${WEBSITE}callback?status=pending`
 }
 let items = []
 let payer = {
