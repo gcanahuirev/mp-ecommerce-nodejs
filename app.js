@@ -17,9 +17,15 @@ app.get('/', (req, res) => {
 	return res.render('home');
 });
 
-app.get('/detail', (req, res) => {
-	return res.render('detail', req.query);
-	// checkout(req.query, opts)
+app.get('/detail', async (req, res) => {
+	const { query } = req
+	try {
+		const { body: { init_point, id } } = await checkout(query, opts)
+		req.query = { ...query, init_point, id }
+		return res.render('detail', req.query)
+	} catch (err) {
+		return res.send('Algo salio mal');
+	}
 });
 
 app.post('/notifications', (req, res) => {
@@ -34,7 +40,6 @@ app.post('/notifications', (req, res) => {
 
 app.post('/webhooks', (req, res) => {
 	const { body } = req
-	console.log('webhook', body)
 	return res.send(body)
 })
 
@@ -49,16 +54,6 @@ app.get('/callback', (req, res) => {
 app.get('/notfound', (req, res) => {
 	return res.send('Not found')
 })
-
-app.post('/checkout', async (req, res) => {
-	try {
-		const { body: { init_point } } = await checkout(req.body, opts)
-		return res.render('confirm', { init_point })
-	} catch (err) {
-		console.log(err);
-		return res.send('Algo salio mal');
-	}
-});
 
 app.listen(PORT);
 console.log(`Server running -> PORT: ${PORT}`);

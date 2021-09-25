@@ -124,17 +124,14 @@
                   {{unit}}
                 </h3>
               </div>
-              <form action='/checkout' method='POST'>
-                <input type='hidden' name='image' value='{{img}}' />
-                <input type='hidden' name='title' value='{{title}}' />
-                <input type='hidden' name='price' value='{{price}}' />
-                <input type='hidden' name='unit' value='{{unit}}' />
-                <button
-                  type='submit'
-                  class='mercadopago-button'
-                  formmethod='POST'
-                >Pagar la compra</button>
-              </form>
+              </script>
+              <a href='{{init_point}}' target='_blank'>Pagar la compra</a>
+              <script
+                src='https://www.mercadopago.com.pe/integrations/v1/web-payment-checkout.js'
+                data-preference-id='{{id}}'
+                data-button-label='Pagar la compra'
+              >
+              </script>
             </div>
           </div>
         </div>
