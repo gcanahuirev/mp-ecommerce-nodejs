@@ -40,6 +40,7 @@ app.post('/notifications', (req, res) => {
 
 app.post('/webhooks', (req, res) => {
 	const { body } = req
+	console.log(JSON.stringify(body, null, 2))
 	return res.send(body)
 })
 
